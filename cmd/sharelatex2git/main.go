@@ -75,7 +75,7 @@ func run(c *cli.Context) {
 	)
 	err := downloader.Download(workdir)
 	if err != nil {
-		log.Println("Got an error:", err.Error())
+		log.Fatalln("Got an error:", err.Error())
 	}
 
 	projectZip := fmt.Sprintf("%s/project.zip", workdir)
