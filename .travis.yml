@@ -7,6 +7,7 @@ go:
 
 install:
     - go get github.com/Masterminds/glide
+    - go get golang.org/x/net/publicsuffix
     - glide install
 
 script:
