@@ -90,15 +90,17 @@ func setupAuth(client *resty.Client, email, password string) error {
 	csrf := matches[1]
 
 	// do actual login
-	resp, err = client.R().SetFormData(map[string]string{
-		"_csrf":    csrf,
-		"email":    email,
-		"password": password,
-	}).Post(sharelatexLoginURL)
+	resp, err = client.R().
+		SetFormData(map[string]string{
+			"_csrf":    csrf,
+			"email":    email,
+			"password": password,
+		}).
+		Post(sharelatexLoginURL)
 	if err != nil {
 		return err
 	}
-	if resp.StatusCode() != 200 {
+	if resp.StatusCode() != http.StatusOK {
 		log.Println("Authentication failed.")
 		return errors.New("wrong email or password")
 	}
