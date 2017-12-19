@@ -12,9 +12,9 @@ import (
 )
 
 const (
-	sharelatexLoginURL         = "https://www.sharelatex.com/login"
-	sharelatexProjectURLFormat = "https://www.sharelatex.com/project/%s/download/zip"
-	sharelatexSessKey          = "sharelatex_session"
+	loginURL            = "https://www.sharelatex.com/login"
+	projectZipURLFormat = "https://www.sharelatex.com/project/%s/download/zip"
+	sessionKey          = "sharelatex_session"
 )
 
 // Downloader interface for downloading sharelatex project
@@ -63,7 +63,7 @@ func (d *HTTPDownloader) Download(wd string) error {
 	}
 
 	// download the project
-	projectURL := fmt.Sprintf(sharelatexProjectURLFormat, projectID)
+	projectURL := fmt.Sprintf(projectZipURLFormat, projectID)
 	_, err = client.R().
 		SetOutput(output).
 		Get(projectURL)
@@ -72,7 +72,7 @@ func (d *HTTPDownloader) Download(wd string) error {
 
 func setupAuth(client *resty.Client, email, password string) error {
 	// create inital request
-	resp, err := client.R().Get(sharelatexLoginURL)
+	resp, err := client.R().Get(loginURL)
 	if err != nil {
 		return err
 	}
@@ -96,7 +96,7 @@ func setupAuth(client *resty.Client, email, password string) error {
 			"email":    email,
 			"password": password,
 		}).
-		Post(sharelatexLoginURL)
+		Post(loginURL)
 	if err != nil {
 		return err
 	}
@@ -134,7 +134,7 @@ func setupSharedProject(client *resty.Client, projectURL string) (string, error)
 func updateSessCookie(client *resty.Client, cookies []*http.Cookie) {
 	sessCookie := getSessCookie(cookies)
 	for _, cookie := range client.Cookies {
-		if cookie.Name == sharelatexSessKey {
+		if cookie.Name == sessionKey {
 			cookie.Value = sessCookie.Value
 			return
 		}
@@ -144,7 +144,7 @@ func updateSessCookie(client *resty.Client, cookies []*http.Cookie) {
 
 func getSessCookie(cookies []*http.Cookie) *http.Cookie {
 	for _, cookie := range cookies {
-		if cookie.Name == sharelatexSessKey {
+		if cookie.Name == sessionKey {
 			return cookie
 		}
 	}
