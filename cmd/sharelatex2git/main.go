@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"strings"
 
+	"github.com/asasmoyo/sharelatex2git/commands"
 	"github.com/asasmoyo/sharelatex2git/sharelatex"
 	"github.com/urfave/cli"
 )
@@ -29,6 +31,20 @@ func main() {
 		cli.StringFlag{
 			Name:  "workdir, wd",
 			Usage: "Working directory",
+			Value: "project",
+		},
+		cli.StringFlag{
+			Name:  "git-url",
+			Usage: "Git repository url",
+		},
+		cli.StringFlag{
+			Name:  "git-branch",
+			Usage: "Git repository target branch",
+			Value: "master",
+		},
+		cli.BoolFlag{
+			Name:  "git-force-push",
+			Usage: "Use git force push",
 		},
 	}
 	app.Action = run
@@ -47,9 +63,10 @@ func run(c *cli.Context) {
 		return
 	}
 
-	// make sure workdir is present
+	// prepare workdir
 	workdir := c.String("workdir")
-	os.MkdirAll(workdir, os.ModePerm)
+	prepareWorkdir(workdir, c.String("git-url"))
+	log.Printf("Using %s as workdir\n", workdir)
 
 	downloader := sharelatex.NewDownloader(
 		c.String("email"),
@@ -60,4 +77,23 @@ func run(c *cli.Context) {
 	if err != nil {
 		log.Println("Got an error:", err.Error())
 	}
+
+	projectZip := fmt.Sprintf("%s/project.zip", workdir)
+	projectDir := fmt.Sprintf("%s/project", workdir)
+	repoDir := fmt.Sprintf("%s/repo", workdir)
+
+	commands.Unzip(projectZip, projectDir)
+	commands.AddFiles(projectDir, repoDir)
+	commands.GitAddAll(repoDir)
+	commands.GitCommit(repoDir)
+	commands.GitPush(repoDir, c.String("git-branch"), c.Bool("git-force-push"))
+}
+
+func prepareWorkdir(wd, gitURL string) {
+	os.RemoveAll(wd)
+	os.MkdirAll(wd, os.ModePerm)
+
+	repoDir := fmt.Sprintf("%s/repo", wd)
+	log.Printf("Cloning %s repo into %s\n", gitURL, repoDir)
+	commands.GitCloneRepo(gitURL, repoDir)
 }

@@ -38,10 +38,10 @@ type HTTPDownloader struct {
 
 // Download downloads project zip using credentials provided using wd as current directory
 func (d *HTTPDownloader) Download(wd string) error {
-	log.Printf("Downloading %s...\n", d.ProjectURL)
+	log.Printf("Downloading %s\n", d.ProjectURL)
 
 	projectID, isSharedProject, needAuth := parseProjectID(d.ProjectURL)
-	output := fmt.Sprintf("%s.zip", projectID)
+	output := "project.zip"
 
 	client := resty.New()
 	client.SetRedirectPolicy(resty.FlexibleRedirectPolicy(1))
