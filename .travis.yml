@@ -6,8 +6,7 @@ go:
     - 1.9.x
 
 install:
-    - go get github.com/Masterminds/glide
-    - go get golang.org/x/net/publicsuffix
+    - make deps
     - glide install
 
 script:
