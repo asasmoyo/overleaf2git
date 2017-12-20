@@ -1,4 +1,7 @@
 # sharelatex2git
+
+[![Build Status](https://travis-ci.org/asasmoyo/sharelatex2git.svg?branch=master)](https://travis-ci.org/asasmoyo/sharelatex2git)
+
 Simple script for downloading Sharelatex projects and store it into Git repository
 
 **NOTE:** This is unofficial project. Use it at your own risk!
