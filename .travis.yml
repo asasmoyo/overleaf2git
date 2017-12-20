@@ -10,4 +10,16 @@ install:
     - glide install
 
 script:
-    - make build
+    - make build-ci
+
+deploy:
+    provider: releases
+    api_key: $GITHUB_TOKEN
+    file:
+        - bin/sharelatex2git-linux
+        - bin/sharelatex2git-darwin
+    skip_cleanup: true
+    on:
+        tags: true
+        condition: $TRAVIS_GO_VERSION =~ ^1\.9\.[0-9]+$
+
