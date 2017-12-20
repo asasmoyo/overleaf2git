@@ -36,6 +36,16 @@ GLOBAL OPTIONS:
 
 2. Push project files into git repository
 
+## Installation
+
+You can download the binary in [release page.](https://github.com/asasmoyo/sharelatex2git/releases)
+
+Or you can download and build manually using Golang:
+
+```
+go get github.com/asasmoyo/sharelatex2git/cmd/sharelatex2git
+```
+
 ## Development
 
 Requirements:
