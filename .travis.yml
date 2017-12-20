@@ -10,7 +10,7 @@ install:
     - glide install
 
 script:
-    - make build
+    - make build-ci
 
 deploy:
     provider: releases
