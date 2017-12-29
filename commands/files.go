@@ -8,13 +8,12 @@ import (
 )
 
 func AddFiles(src, dest string) {
-	files, err := ioutil.ReadDir(src)
+	dstFiles, err := ioutil.ReadDir(dest)
 	if err != nil {
 		panic(err)
 	}
-
-	for _, item := range files {
-		if !(item.IsDir() && item.Name() != ".git") {
+	for _, item := range dstFiles {
+		if strings.TrimSpace(item.Name()) != ".git" {
 			path := filepath.Join(dest, item.Name())
 			os.RemoveAll(path)
 		}
