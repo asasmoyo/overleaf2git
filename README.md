@@ -33,6 +33,12 @@ GLOBAL OPTIONS:
    --version, -v                print the version
 ```
 
+## Requirements
+
+1. Unzip
+
+2. Git
+
 ## Features
 
 1. Supports public and private projects
