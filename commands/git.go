@@ -14,7 +14,7 @@ func GitAddAll(repoDir string) {
 }
 
 func GitCommit(repoDir string) {
-	msg := fmt.Sprintf("Committed with sharelatex2git at %s", time.Now().Format(time.RFC3339))
+	msg := fmt.Sprintf("Committed with overleaf2git at %s", time.Now().Format(time.RFC3339))
 	runWithChdir("git", repoDir, "commit", "-m", fmt.Sprintf("\"%s\"", msg))
 }
 

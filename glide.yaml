@@ -1,6 +1,0 @@
-package: github.com/asasmoyo/sharelatex2git
-import:
-- package: github.com/urfave/cli
-  version: ^1.20.0
-- package: github.com/go-resty/resty
-  version: ^1.0.0

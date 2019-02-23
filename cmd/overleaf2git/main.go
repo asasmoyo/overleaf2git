@@ -6,27 +6,23 @@ import (
 	"os"
 	"strings"
 
-	"github.com/asasmoyo/sharelatex2git/commands"
-	"github.com/asasmoyo/sharelatex2git/sharelatex"
+	"github.com/asasmoyo/overleaf2git/commands"
+	"github.com/asasmoyo/overleaf2git/overleaf"
 	"github.com/urfave/cli"
 )
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "sharelatex2git"
-	app.Usage = "Sync sharelatex files into git"
+	app.Name = "overleaf2git"
+	app.Usage = "Sync overleaf files into git"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
-			Name:  "email, e",
-			Usage: "Your sharelatex email",
-		},
-		cli.StringFlag{
-			Name:  "password, p",
-			Usage: "Your sharelatex password",
+			Name:  "session-key, s",
+			Usage: "Your overleaf active session key",
 		},
 		cli.StringFlag{
 			Name:  "url, u",
-			Usage: "Sharelatex project url",
+			Usage: "Overleaf project url",
 		},
 		cli.StringFlag{
 			Name:  "workdir, wd",
@@ -58,8 +54,8 @@ func run(c *cli.Context) {
 		log.Println("Project url cannot be empty")
 		return
 	}
-	if !strings.HasPrefix(projectURL, "https://www.sharelatex.com/") {
-		log.Println("Project url must begin with https://www.sharelatex.com/")
+	if !strings.HasPrefix(projectURL, "https://www.overleaf.com/") {
+		log.Println("Project url must begin with https://www.overleaf.com/")
 		return
 	}
 
@@ -68,9 +64,8 @@ func run(c *cli.Context) {
 	prepareWorkdir(workdir, c.String("git-url"))
 	log.Printf("Using %s as workdir\n", workdir)
 
-	downloader := sharelatex.NewDownloader(
-		c.String("email"),
-		c.String("password"),
+	downloader := overleaf.NewDownloader(
+		c.String("session-key"),
 		projectURL,
 	)
 	err := downloader.Download(workdir)

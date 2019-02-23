@@ -1,18 +1,13 @@
 .PHONY: build
 build:
 	mkdir -p bin
-	go build -o bin/sharelatex2git github.com/asasmoyo/sharelatex2git/cmd/sharelatex2git
+	go build -o bin/overleaf2git github.com/asasmoyo/overleaf2git/cmd/overleaf2git
 
 .PHONY: build-ci
 build-ci:
 	mkdir -p bin
-	env GOOS=linux GOARCH=amd64 go build -o bin/sharelatex2git-linux github.com/asasmoyo/sharelatex2git/cmd/sharelatex2git
-	env GOOS=darwin GOARCH=amd64 go build -o bin/sharelatex2git-darwin github.com/asasmoyo/sharelatex2git/cmd/sharelatex2git
-
-.PHONY: deps
-deps:
-	go get github.com/Masterminds/glide
-	go get golang.org/x/net/publicsuffix
+	env GOOS=linux GOARCH=amd64 go build -o bin/overleaf2git-linux github.com/asasmoyo/overleaf2git/cmd/overleaf2git
+	env GOOS=darwin GOARCH=amd64 go build -o bin/overleaf2git-darwin github.com/asasmoyo/overleaf2git/cmd/overleaf2git
 
 .PHONY: clean
 clean:
@@ -20,4 +15,4 @@ clean:
 
 .PHONY: run
 run:
-	./bin/sharelatex2git
+	./bin/overleaf2git
