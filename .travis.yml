@@ -1,13 +1,11 @@
 language: go
 
 go:
-    - 1.7.x
-    - 1.8.x
-    - 1.9.x
+    - 1.11.x
+    - master
 
 install:
-    - make deps
-    - glide install
+    - go mod download
 
 script:
     - make build-ci
@@ -16,10 +14,9 @@ deploy:
     provider: releases
     api_key: $GITHUB_TOKEN
     file:
-        - bin/sharelatex2git-linux
-        - bin/sharelatex2git-darwin
+        - bin/overleaf2git-linux
+        - bin/overleaf2git-darwin
     skip_cleanup: true
     on:
         tags: true
-        condition: $TRAVIS_GO_VERSION =~ ^1\.9\.[0-9]+$
-
+        condition: $TRAVIS_GO_VERSION =~ ^1\.11\.[0-9]+$
