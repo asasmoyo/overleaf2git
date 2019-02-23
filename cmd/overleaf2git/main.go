@@ -14,7 +14,7 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = "overleaf2git"
-	app.Usage = "Sync overleaf files into git"
+	app.Usage = "Sync Overleaf files into git"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:  "session-key, s",

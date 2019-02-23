@@ -1,8 +1,8 @@
-# sharelatex2git
+# overleaf2git
 
-[![Build Status](https://travis-ci.org/asasmoyo/sharelatex2git.svg?branch=master)](https://travis-ci.org/asasmoyo/sharelatex2git)
+[![Build Status](https://travis-ci.org/asasmoyo/overleaf2git.svg?branch=master)](https://travis-ci.org/asasmoyo/overleaf2git)
 
-Simple script for downloading Sharelatex projects and store it into Git repository
+Simple script for downloading Overleaf projects and store it into Git repository
 
 **NOTE:** This is unofficial project. Use it at your own risk!
 
@@ -10,10 +10,10 @@ Simple script for downloading Sharelatex projects and store it into Git reposito
 
 ```
 NAME:
-   sharelatex2git - Sync sharelatex files into git
+   overleaf2git - Sync Overleaf files into git
 
 USAGE:
-   sharelatex2git [global options] command [command options] [arguments...]
+   overleaf2git [global options] command [command options] [arguments...]
 
 VERSION:
    0.0.0
@@ -22,15 +22,14 @@ COMMANDS:
      help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --email value, -e value      Your sharelatex email
-   --password value, -p value   Your sharelatex password
-   --url value, -u value        Sharelatex project url
-   --workdir value, --wd value  Working directory (default: "project")
-   --git-url value              Git repository url
-   --git-branch value           Git repository target branch (default: "master")
-   --git-force-push             Use git force push
-   --help, -h                   show help
-   --version, -v                print the version
+   --session-key value, -s value  Your overleaf active session key
+   --url value, -u value          Overleaf project url
+   --workdir value, --wd value    Working directory (default: "project")
+   --git-url value                Git repository url
+   --git-branch value             Git repository target branch (default: "master")
+   --git-force-push               Use git force push
+   --help, -h                     show help
+   --version, -v                  print the version
 ```
 
 ## Requirements
@@ -47,12 +46,12 @@ GLOBAL OPTIONS:
 
 ## Installation
 
-You can download the binary in [release page.](https://github.com/asasmoyo/sharelatex2git/releases)
+You can download the binary in [release page.](https://github.com/asasmoyo/overleaf2git/releases)
 
 Or you can download and build manually using Golang:
 
 ```
-go get github.com/asasmoyo/sharelatex2git/cmd/sharelatex2git
+go get github.com/asasmoyo/overleaf2git/cmd/overleaf2git
 ```
 
 ## Development
