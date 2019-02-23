@@ -60,12 +60,12 @@ Requirements:
 
 1. Make
 
-2. Golang (let's use latest version)
+2. Golang (let's use > 1.11.*)
 
 You can install required dependencies by:
 
 ```
-make deps
+go mod download
 ```
 
 ## Licence
