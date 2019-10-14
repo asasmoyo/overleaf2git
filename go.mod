@@ -1,7 +1,10 @@
 module github.com/asasmoyo/overleaf2git
 
 require (
-	github.com/go-resty/resty v0.0.0-20170925192930-9ac9c42358f7
-	github.com/urfave/cli v1.20.0
-	golang.org/x/net v0.0.0-20190213061140-3a22650c66bd // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
+	github.com/urfave/cli v1.22.1
+	golang.org/x/net v0.0.0-20191011234655-491137f69257 // indirect
+	gopkg.in/resty.v1 v1.12.0
 )
+
+go 1.13

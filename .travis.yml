@@ -2,6 +2,8 @@ language: go
 
 go:
     - 1.11.x
+    - 1.12.x
+    - 1.13.x
     - master
 
 env:
@@ -22,4 +24,4 @@ deploy:
     skip_cleanup: true
     on:
         tags: true
-        condition: $TRAVIS_GO_VERSION =~ ^1\.11\..+$
+        condition: $TRAVIS_GO_VERSION =~ ^1\.13\..+$
